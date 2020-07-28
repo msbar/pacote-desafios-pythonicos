@@ -10,9 +10,23 @@ Exemplo: 'abcde', a metade da frente é 'abc' e a de trás é 'de'.
 Finalmente, dadas duas strings a e b, retorne uma string na forma:
 a-frente + b-frente + a-trás + b-trás
 """
+from math import floor
+
+
 def front_back(a, b):
-    # +++ SUA SOLUÇÃO +++
-    return
+    afrente, atras = divide_string(a)
+    bfrente, btras = divide_string(b)
+    return afrente + bfrente + atras + btras
+
+
+def divide_string(s):
+    tamanho = len(s)
+    meio = int(tamanho / 2) if tamanho % 2 == 0 else int(floor(tamanho / 2) + 1)
+    frente = s[:meio]
+    tras = s[meio:]
+
+    return [frente, tras]
+
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---

@@ -11,12 +11,21 @@ Dica: Isso pode ser resolvido criando 2 listas e ordenando cada uma
 antes de combina-las.
 """
 
+
 def front_x(words):
-    # +++ SUA SOLUÇÃO +++
-    return
-
-
+    words_begin_x = []
+    words_not_begin_x = []
+    for word in words:
+        if word[0] == 'x':
+            words_begin_x.append(word)
+        else:
+            words_not_begin_x.append(word)
+    words_begin_x.sort()
+    words_not_begin_x.sort()
+    merge = words_begin_x + words_not_begin_x
+    return merge
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
+
 
 def test(f, in_, expected):
     """

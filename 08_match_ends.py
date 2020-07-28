@@ -8,10 +8,21 @@ e o último caracteres da cadeia são os mesmos.
 PS: Python não possui o operador ++, porém += funciona.
 """
 
-def match_ends(words):
-    # +++ SUA SOLUÇÃO +++
-    return
 
+def match_ends(words):
+    count = 0
+    for word in words:
+        if len(word) >= 2 and word[0] == word[-1]:
+            count += 1
+    return count
+
+
+def match_ends_lc(words):
+    return len([word for word in words if len(word) >= 2 and word[0] == word[-1]])
+
+
+def match_ends_ge(words):
+    return len(list((word for word in words if len(word) >= 2 and word[0] == word[-1])))
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
 
@@ -37,3 +48,15 @@ if __name__ == '__main__':
     test(match_ends, ['aba', 'xyz', 'aa', 'x', 'bbb'], 3)
     test(match_ends, ['', 'x', 'xy', 'xyx', 'xx'], 2)
     test(match_ends, ['aaa', 'be', 'abc', 'hello'], 1)
+
+    # list comprehension
+    print('list comprehension')
+    test(match_ends_lc, ['aba', 'xyz', 'aa', 'x', 'bbb'], 3)
+    test(match_ends_lc, ['', 'x', 'xy', 'xyx', 'xx'], 2)
+    test(match_ends_lc, ['aaa', 'be', 'abc', 'hello'], 1)
+
+    # generation expressions
+    print('generation expressions')
+    test(match_ends_ge, ['aba', 'xyz', 'aa', 'x', 'bbb'], 3)
+    test(match_ends_ge, ['', 'x', 'xy', 'xyx', 'xx'], 2)
+    test(match_ends_ge, ['aaa', 'be', 'abc', 'hello'], 1)

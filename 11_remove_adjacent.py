@@ -8,9 +8,17 @@ Exemplo: [1, 2, 2, 3]
 Irá retornar: [1, 2, 3]
 """
 
+
+def remove_adjacent_a(nums):
+    a = nums[:1]
+    for item in nums[1:]:
+        if item != a[-1]:
+            a.append(item)
+    return a
+
+
 def remove_adjacent(nums):
-    # +++ SUA SOLUÇÃO +++
-    return
+    return [a for a, b in zip(nums, nums[1:]+[False]) if a != b]
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
@@ -38,3 +46,7 @@ if __name__ == '__main__':
     test(remove_adjacent, [2, 2, 3, 3, 3], [2, 3])
     test(remove_adjacent, [], [])
     test(remove_adjacent, [2, 2, 3, 3, 3, 2, 2], [2, 3, 2])
+    test(remove_adjacent_a, [1, 2, 2, 3], [1, 2, 3])
+    test(remove_adjacent_a, [2, 2, 3, 3, 3], [2, 3])
+    test(remove_adjacent_a, [], [])
+    test(remove_adjacent_a, [2, 2, 3, 3, 3, 2, 2], [2, 3, 2])

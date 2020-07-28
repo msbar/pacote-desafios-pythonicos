@@ -58,6 +58,33 @@ import sys
 # Defina as funções print_words(filename) e print_top(filename).
 
 
+def handle_file(filename):
+    with open(filename, "r") as file:
+        words = file.read().lower().split()
+        num_occurrence = [words.count(word) for word in words]
+        dict_wordcount = dict(zip(words, num_occurrence))
+
+        return dict_wordcount
+
+
+def dict_sorter(dict_wordcount, option):
+    """ Ordena o dicionário pelo indíce ou pelo values """
+    flag = 0 if option == '--count' else 1
+    return sorted(dict_wordcount.items(), key=lambda x: x[flag])
+
+
+def print_words(filename):
+    dict_wordcount = handle_file(filename)
+    alphabet_sort = dict_sorter(dict_wordcount, "--count")
+    [print(word, num_occurrence) for (word, num_occurrence) in alphabet_sort]
+
+
+def print_top(filename):
+    dict_wordcount = handle_file(filename)
+    top_sort = dict_sorter(dict_wordcount, "--topcount")
+    [print(word, num_occurrence) for (word, num_occurrence) in top_sort[:21]]
+
+
 # A função abaixo chama print_words() ou print_top() de acordo com os
 # parêtros do programa.
 def main():
